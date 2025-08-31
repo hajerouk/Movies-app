@@ -13,20 +13,15 @@ export default function AddMovieForm({ onAdd }) {
   // ---------------------------
   // 2) Fonction appelée à la soumission du formulaire
   // ---------------------------
-  const handleSubmit = (e) => {
-    e.preventDefault(); // empêche le rechargement de la page
-    // Vérification simple : titre et description obligatoires
-    if (!title || !description) return alert("Titre et description obligatoires");
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  if (!title || !description) return alert("Titre et description obligatoires");
+  onAdd({ title, description, posterURL, rating }); 
+  setDescription("");
+  setPosterURL("");
+  setRating(0);
+};
 
-    // Appel de la fonction passée en prop pour ajouter le film à la liste
-    onAdd({ title, description, posterURL, rating });
-
-    // Réinitialisation du formulaire pour permettre un nouvel ajout
-    setTitle("");
-    setDescription("");
-    setPosterURL("");
-    setRating(0);
-  };
 
   // ---------------------------
   // 3) JSX : rendu du formulaire
